@@ -1,5 +1,5 @@
-import fetch from "node-fetch";
-import * as cheerio from "cheerio";
+const fetch = require("node-fetch");
+const cheerio = require("cheerio");
 
 async function scrapePdfLink(url) {
   try {
@@ -62,7 +62,7 @@ async function scrapeAlevelApi(subject) {
       }
     });
 
-    // Scrape PDF links in parallel
+    // Scrape PDFs in parallel
     const withPdfs = await Promise.all(
       results.map(async (r) => ({
         subject: r.title,
@@ -78,7 +78,7 @@ async function scrapeAlevelApi(subject) {
   }
 }
 
-export async function handler(event) {
+exports.handler = async (event) => {
   const subject = event.queryStringParameters.s;
 
   if (!subject) {
@@ -102,4 +102,4 @@ export async function handler(event) {
       results,
     }),
   };
-}
+};
