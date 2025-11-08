@@ -52,8 +52,9 @@ async function scrapeAlevelApi(subject) {
 
     const results = [];
 
-    $("article, .post, .search-result, .entry").each((_, el) => {
-      const titleTag = $(el).find("h2 a, .entry-title a, h3 a, .post-title a");
+    // more flexible selectors
+    $("article").each((_, el) => {
+      const titleTag = $(el).find("h2.entry-title a, .entry-title a, .post-title a, h2 a");
       const title = titleTag.text().trim();
       const link = titleTag.attr("href");
 
@@ -62,7 +63,16 @@ async function scrapeAlevelApi(subject) {
       }
     });
 
-    // Scrape PDFs in parallel
+    // If still empty, try another fallback selector
+    if (results.length === 0) {
+      $(".entry-title a, .post-title a").each((_, el) => {
+        const title = $(el).text().trim();
+        const link = $(el).attr("href");
+        if (title && link) results.push({ title, link });
+      });
+    }
+
+    // scrape PDFs in parallel
     const withPdfs = await Promise.all(
       results.map(async (r) => ({
         subject: r.title,
