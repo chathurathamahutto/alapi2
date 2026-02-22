@@ -9,11 +9,11 @@ module.exports = async (req, res) => {
     const browser = await puppeteer.launch({
       args: chromium.args,
       executablePath: await chromium.executablePath(),
-      headless: chromium.headless,
+      headless: true,
+      defaultViewport: chromium.defaultViewport,
     });
 
     const page = await browser.newPage();
-
     await page.goto(url, { waitUntil: "domcontentloaded" });
 
     const results = await page.evaluate(() => {
@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
         const category = el.querySelector(".bb-cat-links")?.innerText.trim() || null;
 
         return { title, link, thumbnail, category };
-      }).filter(item => item.title && item.link);
+      }).filter(x => x.title && x.link);
     });
 
     await browser.close();
