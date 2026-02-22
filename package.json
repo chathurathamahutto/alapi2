@@ -2,7 +2,7 @@
   "name": "alevel-scraper",
   "version": "1.0.0",
   "dependencies": {
-    "puppeteer-core": "^21.6.0",
-    "@sparticuz/chromium": "^119.0.0"
+    "puppeteer-core": "20.9.0",
+    "@sparticuz/chromium": "119.0.2"
   }
 }
