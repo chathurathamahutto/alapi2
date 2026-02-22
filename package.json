@@ -1,12 +1,12 @@
 {
-  "name": "alapi",
+  "name": "alevel-vercel-scraper",
   "version": "1.0.0",
-  "main": "netlify/functions/scraper.js",
+  "main": "api/accounting.js",
   "scripts": {
-    "start": "netlify dev"
+    "start": "vercel dev"
   },
   "dependencies": {
-    "cheerio": "^1.0.0",
-    "node-fetch": "^2.6.7"
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12"
   }
 }
