@@ -1,12 +1,8 @@
 {
-  "name": "alevel-vercel-scraper",
+  "name": "alevel-scraper",
   "version": "1.0.0",
-  "main": "api/accounting.js",
-  "scripts": {
-    "start": "vercel dev"
-  },
   "dependencies": {
-    "axios": "^1.6.0",
-    "cheerio": "^1.0.0-rc.12"
+    "puppeteer-core": "^21.6.0",
+    "@sparticuz/chromium": "^119.0.0"
   }
 }
