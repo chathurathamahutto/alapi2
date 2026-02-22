@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/accounting.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/accounting",
+      "methods": ["GET"],
+      "dest": "/api/accounting.js"
+    }
+  ]
+}
